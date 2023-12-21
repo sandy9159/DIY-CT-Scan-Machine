@@ -39,7 +39,7 @@ CT scans are valuable in diagnosing a variety of conditions and injuries, includ
 
 CT scans are versatile and widely used in medical settings for their ability to provide detailed images of internal structures. However, they do involve exposure to ionizing radiation, so healthcare professionals carefully weigh the benefits against the risks when recommending CT scans. In some cases, alternative imaging techniques, such as MRI or ultrasound, may be considered based on the specific clinical requirements.
 
-Supplies
+# Supplies
 
 
 ![j](https://github.com/sandy9159/DIY-CT-Scan-Machine/assets/19898602/7972e3a3-8503-45f0-aa38-e2d3a06aca57)
@@ -97,7 +97,7 @@ The material list comprises various components essential for building a mechanic
 This diverse set of materials suggests a project that could involve mechanical structures, motion control, and possibly electronics, showcasing a multidisciplinary approach to building a customized system or device.
 
 
-SETUP
+# SETUP
 
 
 
@@ -182,7 +182,7 @@ Constructing a system or device using the listed materials involves a multidisci
 This construction process outlines a general approach to building a system that incorporates both mechanical and electronic elements using the provided materials. The specific details will depend on the project's requirements and goals.
 
 
-Circuit And Custom PCB
+# Circuit And Custom PCB
 
 
 ![FPUP0HWLO8MNWWV](https://github.com/sandy9159/DIY-CT-Scan-Machine/assets/19898602/95af6097-753e-4ed6-b699-b883b1c80bc7)
@@ -195,7 +195,7 @@ Circuit And Custom PCB
 
 
 
-Wiring Connection Details for Arduino-based CT Scan Machine
+# Wiring Connection Details for Arduino-based CT Scan Machine
 
 In the assembly of your CT Scan Machine, it's important to have clear and accurate wiring connections to ensure proper functionality. Here's a detailed write-up on how the wiring is set up for your project:
 
@@ -214,7 +214,7 @@ By following these wiring connections, you ensure that your CT Scan Machine is s
 
 You can download the PCB file from the link
 
-PCB FILES
+# PCB FILES
 
 Unlock Innovation with JLCPCB - Your Ultimate PCB Solution
 
@@ -240,7 +240,9 @@ so order the best quality PCB visit the link
 
 JLCPCB 1-20 Layer PCB from $2, Sign up to Get $54 Coupons here: https://jlcpcb.com/?from=MrI
 
-Arduino Code
+
+
+# Arduino Code
 
 /*
 Author  : Andrea Lombardo
@@ -258,50 +260,82 @@ It's normal, may depends by motor and power supply.
 Wiring schema in file "L298N - Schema_with_EN_pin.png"
 */
 
+
 // Include the library
+
 #include <L298N.h>
+
 #include <Arduino.h>
+
 #include "BasicStepperDriver.h"
+
 #define MOTOR_STEPS 200
+
 #define RPM 20
+
 #define MICROSTEPS 16
 
+
 #define DIR A0
+
 #define STEP A1
+
 BasicStepperDriver stepper(MOTOR_STEPS, DIR, STEP);
 
+
 const unsigned int IN1 = 7;
+
 const unsigned int IN2 = 8;
+
 const unsigned int EN = 5;
+
 
 L298N motor(EN, IN1, IN2);
 
+
 void setup()
+
 {
+
   
   Serial.begin(9600);
   
   
+
+  
  
   motor.setSpeed(255);
+  
    stepper.begin(RPM, MICROSTEPS);
+   
    delay(2000);
+   
 }
 
+
 void loop()
+
 {
+
 
   
  motor.forward();
+ 
   delay(500);
+  
 stepper.rotate(1500);
+
  delay(1000);
+ 
 stepper.rotate(-1500);
+
  delay(500);
+ 
 motor.stop();
+
  delay(1000);
 
 }
 
-Video
+
 
